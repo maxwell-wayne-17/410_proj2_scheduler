@@ -22,6 +22,13 @@ void Stats::showAllProcessInfo(){
 
 }
 
+/**
+ * create variables to calculate total time then divide by vector.size()
+ * wait time = finish time - arrival time - required CPU time
+ * turnaround time = finish time - arrival time
+ * response time = start time - arrival time
+ * store all averages in Stats field variables
+ */
 void Stats::calcStats(){
 	float totalWaitTime = 0.0;
 	float totalTurnaroundTime = 0.0;
