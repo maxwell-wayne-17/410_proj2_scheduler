@@ -22,14 +22,40 @@ void Stats::showAllProcessInfo(){
 
 }
 
-float Stats::get_av_response_time(){
-	return 0.0;
+void Stats::calcStats(){
+	float totalWaitTime = 0.0;
+	float totalTurnaroundTime = 0.0;
+	float totalResponseTime = 0.0;
+
+	for (int i = 0; i < (signed)vec->size(); i++){
+		totalWaitTime += vec->at(i).finish_time - vec->at(i).arrival_time - vec->at(i).required_cpu_time;
+		totalTurnaroundTime += vec->at(i).finish_time - vec->at(i).arrival_time;
+		totalResponseTime += vec->at(i).start_time - vec->at(i).arrival_time;
+	}
+
+	av_wait_time       = totalWaitTime / vec->size();
+	av_turnaround_time = totalTurnaroundTime / vec->size();
+	av_response_time   = totalResponseTime / vec-> size();
+
 }
 
+/**
+ * response time = (start time - arrival time)
+ */
+float Stats::get_av_response_time(){
+	calcStats();
+	return av_response_time;
+}
+
+/**
+ * turnaround time = (finish time - arrival time)
+ */
 float Stats::get_av_turnaround_time(){
-	return 0.0;
+	calcStats();
+	return av_turnaround_time;
 }
 float Stats::get_av_wait_time(){
-	return 0.0;
+	calcStats();
+	return av_wait_time;
 }
 
