@@ -10,10 +10,14 @@
 /**
  * add a process to the ready queue, either a new one or one that
  * had been running on the CPU and has been preempted
+ * *For preemptive scheduler, need to sort processes by cpu time whenever added
  */
 void Scheduler::add(PCB p){
-	sort();
 	ready_q->push(p);
+
+	if (preemptive){
+		sort();
+	}
 }
 
 /**

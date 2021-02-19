@@ -18,8 +18,16 @@ Stats::Stats(std::vector<PCB> &finished_vector){
 	av_response_time = 0;
 }
 
+/**
+ * loops thru vec, prints 1 line for each process using the following format
+ * Process 1 Required CPU time:2  arrived:0 started:0 finished:2
+ */
 void Stats::showAllProcessInfo(){
 
+	for (int i = 0; i < (signed)vec->size(); i++){
+		printf ("Process %d Required CPU time:%d  arrived:%d started:%d finished:%d\n",
+				i, vec->at(i).required_cpu_time, vec->at(i).arrival_time, vec->at(i).start_time, vec->at(i).finish_time);
+	}
 }
 
 /**

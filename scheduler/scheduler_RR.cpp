@@ -13,6 +13,8 @@
 /**
  * Switch if process has been on for time-slice length,
  * or if process is done
+ * return true if process is finished, or if process has been on for a time slice
+ * return false otherwise
  */
 bool Scheduler_RR::time_to_switch_processes(int tick_count, PCB &p){
 
@@ -25,6 +27,9 @@ bool Scheduler_RR::time_to_switch_processes(int tick_count, PCB &p){
 	}
 }
 
+/**
+ * RR - not preemptive, not necessary
+ */
 void Scheduler_RR::sort(){
 
 }

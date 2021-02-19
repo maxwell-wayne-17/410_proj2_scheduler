@@ -11,7 +11,9 @@
 #include "../includes/scheduler_FIFO.h"
 
 /**
- * override base class behaviour if necessary, otherwise call it
+ * switch process only if process is done
+ * return true if process's remaining cpu time is <= 0
+ * return false otherwise
  */
 bool Scheduler_FIFO::time_to_switch_processes(int tick_count, PCB &p){
 	return p.remaining_cpu_time <= 0;
